@@ -67,8 +67,12 @@ function jdnToEthiopian(jdn: number): EthiopianDate {
   return { year, month, day };
 }
 
-/** Convert a Gregorian date to a Julian Day Number. */
-function gregorianToJdn(year: number, month: number, day: number): number {
+/**
+ * Convert a Gregorian date to a Julian Day Number.
+ *
+ * @internal Shared with unixTime.ts; not part of the public barrel.
+ */
+export function gregorianToJdn(year: number, month: number, day: number): number {
   if (month <= 2) {
     year -= 1;
     month += 12;
