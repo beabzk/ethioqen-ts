@@ -1,0 +1,40 @@
+{
+  "name": "ethioqen",
+  "version": "0.1.0",
+  "description": "Ethiopian calendar, time, and Unix timestamp conversions",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "check": "oxlint && oxfmt --check . && tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^5.0.0",
+    "oxfmt": "^0.66.0",
+    "oxlint": "^1.81.0",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@11.22.0"
+}

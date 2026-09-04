@@ -1,0 +1,17 @@
+# Deps
+node_modules/
+
+# Build / coverage / docs output
+dist/
+coverage/
+docs/api/
+*.tsbuildinfo
+
+# Scratch (also globally ignored)
+_internal/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
