@@ -14,19 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Install pnpm and Node.js
+        uses: pnpm/setup@v2
         with:
-          node-version: "24"
-          cache: pnpm
+          runtime: node@24
+          cache: true
+          require-lockfile: true
 
       - name: Build release distributions
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm build
+        run: pnpm build
 
       - name: Upload distributions
         uses: actions/upload-artifact@v7
@@ -46,16 +42,24 @@ jobs:
       url: https://www.npmjs.com/package/ethioqen
 
     steps:
+      - name: Install pnpm
+        uses: pnpm/setup@v2
+        with:
+          install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
       - name: Retrieve release distributions
         uses: actions/download-artifact@v8
         with:
           name: release-dists
           path: dist/
 
-      # npm auth (OIDC trusted publishing or token) must be configured
-      # before the first real release. Provenance flag is intentional.
       - name: Publish release distributions to npm
         run: pnpm publish --provenance --access public --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"
