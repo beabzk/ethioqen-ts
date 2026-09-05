@@ -21,8 +21,12 @@
   },
   "scripts": {
     "build": "tsdown",
-    "check": "oxlint && oxfmt --check . && tsc --noEmit",
-    "test": "vitest run --coverage"
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint",
+    "test": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^5.0.0",

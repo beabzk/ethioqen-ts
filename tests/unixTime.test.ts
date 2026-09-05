@@ -64,7 +64,7 @@ describe("ethiopianToUnix", () => {
     expect(() => ethiopianToUnix({ year: 10000, month: 1, day: 1 })).toThrow(InvalidDateError);
   });
 
-  it("rejects offsets at or beyond 24 hours like Python", () => {
+  it("rejects offsets at or beyond 24 hours", () => {
     expect(() => ethiopianToUnix({ year: 2015, month: 1, day: 1, timeZoneOffset: 24 })).toThrow(
       InvalidTimeError,
     );
