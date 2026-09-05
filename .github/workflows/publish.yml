@@ -18,8 +18,10 @@ jobs:
         uses: pnpm/setup@v2
         with:
           runtime: node@24
-          cache: true
-          require-lockfile: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build release distributions
         run: pnpm build
